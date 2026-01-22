@@ -199,7 +199,7 @@ downloadBtn.addEventListener("click", async () => {
   const zip = new JSZip();
 
   const files = [
-    "download/index.html"
+    "vr5/index.html"
   ];
 
   for (const path of files) {

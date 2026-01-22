@@ -199,7 +199,8 @@ downloadBtn.addEventListener("click", async () => {
   const zip = new JSZip();
 
   const files = [
-    "vr5/index.html"
+    "vr5/library.js",
+    "scriptish.js"
   ];
 
   for (const path of files) {

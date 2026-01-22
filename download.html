@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SundaeZipper | WannaSmile v0.8 Download</title>
+<link id="favicon" rel="icon" href="https://raw.githubusercontent.com/sundaezipper/sundaezipper.github.io/main/favicon.png" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css" rel="stylesheet">
+<link href="stylish.css" rel="stylesheet">
+<link href="profilish.css" rel="stylesheet">
+</head>
+<body>
+<header>
+  <img src="title.png" alt="WannaSmile Banner">
+  <div id="headerProfile">
+    <img id="headerProfileImg" src="https://raw.githubusercontent.com/sundaezipper/sundaezipper.github.io/main/system/placeholder/default.jpeg" alt="Profile">
+  </div>
+</header>
+<div class="container">
+  <div class="banner">
+    <img src="wannasmile-banner.png" alt="WannaSmile Banner">
+  </div>
+  <!-- Overlay -->
+  <div id="overlay"></div>
+  <!-- Content -->
+  <div class="asset-card">
+    <h2>WannaSmile v0.8</h2>
+    <p>files included in the Zip:</p>
+    <ul class="file-tree">
+      <!-- root files -->
+      <li>index.html</li>
+      <li>readme.txt</li>
+      <li>license.txt</li>
+
+      <!-- pages folder -->
+      <li>
+        <details>
+          <summary>pages</summary>
+          <ul>
+            <li>
+              <details>
+                <summary>header/</summary>
+                <ul>
+                  <li>support.html</li>
+                  <li>settings.html</li>
+                  <li>profile.html</li>
+                  <li>info.html</li>
+                  <li>favorites.html</li>
+                  <li>discovery.html</li>
+                </ul>
+              </details>
+            </li>
+            <li>footer/</li>
+            <li>dashboard/</li>
+          </ul>
+        </details>
+      </li>
+
+      <li>
+        <details>
+          <summary>audio</summary>
+          <ul>
+            <li>bgm1.mp3</li>
+            <li>bgm2.mp3</li>
+            <li>bgm3.mp3</li>
+            <li>bgm4.mp3</li>
+            <li>bgm5.mp3</li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+
+    <button id="download" class="download-btn">Download ZIP</button>
+    <button id="support" class="support-btn">Support Creator</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  &copy; 2025 SundaeZipper | by mcmattyobriore on github
+</footer>
+
+<audio id="zipSound" src=""></audio>
+
+<!-- Profile overlay -->
+<div id="profileOverlay"></div>
+
+<!-- Profile editing modal -->
+<div class="profile-card" id="profileCard">
+  <button class="close-btn" id="closeProfileCard">X</button>
+  <img src="https://raw.githubusercontent.com/sundaezipper/sundaezipper.github.io/main/system/placeholder/default.jpeg" alt="Profile Picture" id="profilePic">
+  <div class="username" id="username">Nickname</div>
+  <button class="edit-btn" id="editBtn">Edit Profile</button>
+</div>
+
+<div class="edit-card" id="editCard">
+  <button class="close-btn" id="closeEditCard">X</button>
+  <h2>Edit Profile</h2>
+  <img id="profilePreview" class="profile-preview" src="https://raw.githubusercontent.com/sundaezipper/sundaezipper.github.io/main/system/placeholder/default.jpeg" alt="Profile Picture"><br>
+  <form id="editForm">
+    <label for="profilePicInput">Change Profile Picture:</label><br>
+    <input type="file" id="profilePicInput" accept="image/*"><br>
+    <button type="button" class="remove-btn" id="removePicBtn">Remove Picture</button>
+
+    <div id="cropContainer">
+      <img id="cropPreview">
+      <div id="cropActions">
+        <button type="button" id="cropConfirm">✅ Crop</button>
+        <button type="button" id="cropCancel">❌ Cancel</button>
+      </div>
+    </div>
+
+    <br><br>
+    <label for="usernameInput">Edit Username:</label><br>
+    <input type="text" id="usernameInput" placeholder="Enter nickname"><br>
+
+    <button type="submit" class="save-btn">Save Changes</button>
+  </form>
+</div>
+
+<!-- Cropper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+<script src="scriptish2.js"></script>
+</body>
+</html>

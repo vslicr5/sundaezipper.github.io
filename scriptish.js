@@ -198,56 +198,67 @@ downloadBtn.addEventListener("click", async () => {
 
   const zip = new JSZip();
 
+  const baseURL = "https://raw.githubusercontent.com/sundaezipper/sundaezipper.github.io/main/version0.8.1/";
+
   const files = [
-    "WNASMLEv08/index.html",
-    "WNASMLEv08/readme.txt",
-    "WNASMLEv08/license.txt",
-    "WNASMLEv08/pages/header/discovery.html",
-    "WNASMLEv08/pages/header/favorites.html",
-    "WNASMLEv08/pages/header/profile.html",
-    "WNASMLEv08/pages/header/settings.html",
-    "WNASMLEv08/pages/header/support.html",
-    "WNASMLEv08/pages/header/info.html",
-    "WNASMLEv08/pages/dashboard/music-player-v2.html",
-    "WNASMLEv08/pages/dashboard/themes.html",
-    "WNASMLEv08/pages/dashboard/credits.html",
-    "WNASMLEv08/pages/dashboard/raw.html",
-    "WNASMLEv08/pages/footer/socials.html",
-    "WNASMLEv08/pages/footer/update-logs.html",
-    "WNASMLEv08/audio/bgm1.mp3",
-    "WNASMLEv08/audio/bgm2.mp3",
-    "WNASMLEv08/audio/bgm3.mp3",
-    "WNASMLEv08/audio/bgm4.mp3",
-    "WNASMLEv08/audio/bgm5.mp3"
+    "BIGTEST.js",
+    "DMCA.html",
+    "all.css",
+    "angry.gif",
+    "bg.png",
+    "big.js",
+    "commands.js",
+    "confused.gif",
+    "cooked.png",
+    "credits.html",
+    "discover.html",
+    "drop.gif",
+    "favorites.html",
+    "foolish.html",
+    "giggle.gif",
+    "gn.html",
+    "graduation-loading.gif",
+    "happy.gif",
+    "held.gif",
+    "idle.gif",
+    "index.html",
+    "info.html",
+    "intro.png",
+    "loaded.gif",
+    "loading.gif",
+    "logotitle.png",
+    "profile.html",
+    "readme.txt",
+    "searching.gif",
+    "settings.html",
+    "shy.gif",
+    "slackerish.png",
+    "themes.css",
+    "versiontitle.png",
+    "wronged.gif"
   ];
 
-  for (const path of files) {
-    try {
-      const url =
-        `https://raw.githubusercontent.com/sundaezipper/sundaezipper.github.io/main/${path}`;
-      const res = await fetch(url);
+  try {
+    await Promise.all(files.map(async (file) => {
+      const res = await fetch(baseURL + file);
       const data = await res.arrayBuffer();
+      zip.file(file, data, { binary: true });
+    }));
 
-      const parts = path.split("/");
-      const fileName = parts.pop();
-      let folder = zip;
-      for (const part of parts) folder = folder.folder(part);
+    const blob = await zip.generateAsync({ type: "blob" });
 
-      folder.file(fileName, data, { binary: true });
-    } catch (err) {
-      console.error("Failed to load:", path, err);
-    }
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "version0.8.1.zip";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+  } catch (err) {
+    console.error("ZIP ERROR:", err);
+    alert("Failed to create zip. Check console.");
   }
 
-  const blob = await zip.generateAsync({ type: "blob" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "WNASMLEv08.zip";
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-
   overlay.style.display = "none";
-
   showDownloadToast("Download complete!", true);
 });
